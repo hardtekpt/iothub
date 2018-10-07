@@ -11,6 +11,7 @@ router.get("/test", (req, res) => res.json({ msg: "Assistant Works" }));
 // @access  Private
 router.post("/", (req, res) => {
   res.json({ device: req.body.device, power: req.body.power });
+  console.log(req.body.device, req.body.power);
 });
 
 module.exports = router;
