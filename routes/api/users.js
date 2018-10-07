@@ -4,6 +4,7 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const keys = require("../../config/keys");
 const passport = require("passport");
+const isEmpty = require("../../validation/is-empty");
 
 // Load Input Validation
 const validateRegisterInput = require("../../validation/register");
@@ -74,6 +75,10 @@ router.post("/login", (req, res) => {
   let notMatch = true;
 
   User.find().then(users => {
+    if (isEmpty(users)) {
+      errors.email = "User not found";
+      return res.status(404).json(errors);
+    }
     users.forEach((user, index) => {
       if (!user) {
         errors.email = "User not found";
