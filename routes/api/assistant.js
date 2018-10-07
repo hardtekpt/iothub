@@ -10,7 +10,7 @@ router.get("/test", (req, res) => res.json({ msg: "Assistant Works" }));
 // @desc    Control trough google assistant
 // @access  Private
 router.post("/", (req, res) => {
-  console.log(req.body);
+  res.json({ device: req.body.device, power: req.body.power });
 });
 
 module.exports = router;
