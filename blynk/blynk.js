@@ -100,3 +100,5 @@ teste.on("write", param => {
 teste.on("read", param => {
   console.log(param);
 });
+
+module.exports = blynk;

@@ -1,5 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const logger = require("morgan");
 const bodyParser = require("body-parser");
 const passport = require("passport");
 const path = require("path");
@@ -13,12 +14,12 @@ const users = require("./routes/api/users");
 const notes = require("./routes/api/notes");
 const settings = require("./routes/api/settings");
 const weather = require("./routes/api/weather");
-const assistant = require("./routes/api/assistant");
+//const assistant = require("./routes/api/assistant");
 
 // import socket.io router
 const websocketUtils = require("./routes/socket");
 
-const blynkapi = require("./blynk/blynk");
+//const blynkapi = require("./blynk/blynk");
 
 // define our app using express
 const app = express();
@@ -54,6 +55,9 @@ app.use(function(req, res, next) {
   next();
 });
 
+// Logger middleware
+app.use(logger("dev"));
+
 // Body parser middleware
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -81,7 +85,7 @@ app.use("/api/users", users);
 app.use("/api/notes", notes);
 app.use("/api/settings", settings);
 app.use("/api/weather", weather);
-app.use("/api/assistant", assistant);
+//app.use("/api/assistant", assistant);
 
 // Server static assets if in production
 if (process.env.NODE_ENV === "production") {
