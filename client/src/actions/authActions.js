@@ -52,7 +52,7 @@ export const loginUser = userData => dispatch => {
 export const setCurrentUser = data => {
   // Connect to socket.io
   socket = io.connect(
-    "http://localhost:5000",
+    "http://localhost:3000",
     {
       query: { token: localStorage.jwtToken }
     }
