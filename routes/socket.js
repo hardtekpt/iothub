@@ -1,7 +1,9 @@
+//const todoController = require("../controllers/device.controller");
+
 module.exports = {
   router: socket => {
     socket.on("message", msg => {
-      console.log(msg);
+      //todoController.testfunction(msg);
     });
   }
 };

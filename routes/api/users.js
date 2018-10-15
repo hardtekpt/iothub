@@ -6,6 +6,9 @@ const keys = require("../../config/keys");
 const passport = require("passport");
 const isEmpty = require("../../validation/is-empty");
 
+// Setting model
+const Setting = require("../../models/Setting");
+
 // Load Input Validation
 const validateRegisterInput = require("../../validation/register");
 const validatePinLoginInput = require("../../validation/pin-login");
@@ -49,7 +52,16 @@ router.post("/register", (req, res) => {
           newUser.pin = hash;
           newUser
             .save()
-            .then(user => res.json(user))
+            .then(user => {
+              const settingFields = {
+                user: user.id,
+                general: {}
+              };
+
+              new Setting(settingFields).save().then(setting => {
+                res.json({ setting: setting, user: user });
+              });
+            })
             .catch(err => console.log(err));
         });
       });

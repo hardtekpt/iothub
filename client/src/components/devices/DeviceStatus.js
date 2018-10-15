@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 import { Typography } from "@material-ui/core";
 
 // Todo get ip from settings (redux state)
-const serverip = "95.95.64.185:8080";
+const serverip = "localhost:8080";
 
 const styles = theme => ({
   secondaryHeading: {
